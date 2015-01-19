@@ -1,0 +1,14 @@
+Client Size Submit Form Checks
+	Price
+	Number of players
+	Max Categories
+	Min Categories
+Server Side checks
+	Same as above
+
+Check controllers
+Check Models
+
+Database level security
+Upload to github
+Deploy on micro instance

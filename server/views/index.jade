@@ -1,0 +1,45 @@
+extends layout
+
+block content
+	script.
+		var players = !{JSON.stringify(players)};
+		var session = !{JSON.stringify(session)};
+		var config = !{JSON.stringify(config)};
+		var team = !{JSON.stringify(team)};
+	
+	div.row(ng-controller="TeamController")
+		
+		label Name of the Team
+		input.form-control(type="text" ng-model="team.name")
+		div.pull-right {{err}}
+		div.col-md-7
+			h1 Player List
+				span.small.pull-right Remaining: {{remainingCash}}
+			table.table
+				tr
+					th Name
+					th Type
+					th Price
+					th Add
+				tr(ng-repeat = "(id,player) in players | orderBy:'price'")
+					td {{player.name}}
+					td {{player.type}}
+					td {{player.price}}
+					td 
+						a.text-primary(href="#" ng-show="player.visible !==false" ng-click="addPlayer(player)") Add
+		div.col-md-5
+			h1 My Team
+				button.pull-right.btn.btn-default(ng-click="saveTeam()") Save Team
+			table.table
+				tr
+					th Name
+					th Type
+					th Price
+					th Remove
+				tr(ng-repeat = "id in team.players")
+					td {{players[id]['name']}}
+					td {{players[id]['type']}}
+					td {{players[id]['price']}}
+					td 
+						a.text-danger(href="#" ng-click="removePlayer(id)") Remove
+
